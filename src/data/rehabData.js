@@ -79,9 +79,46 @@ export const SPINE_101 = {
   ]
 };
 
+export const LEVELS_CONFIG = {
+  level1: {
+    id: "level1",
+    levelNumber: 1,
+    name: "Cấp độ 1: Nền Tảng & Ổn Định",
+    timeline: "Tuần 0 - 6 (Khởi đầu bắt buộc)",
+    badge: "Người mới & Đang có triệu chứng",
+    color: "emerald",
+    summary: "Dập tắt cơn đau cấp, bảo vệ đĩa đệm L4-L5 tuyệt đối, kích hoạt đai cơ bụng 360° với cánh tay đòn ngắn nhất.",
+    criteriaToAdvance: "Thực hiện liên tục 3-4 tuần hoàn toàn KHÔNG đau thắt lưng; giữ Side Plank quỳ gối vững vàng > 30 giây mỗi bên."
+  },
+  level2: {
+    id: "level2",
+    levelNumber: 2,
+    name: "Cấp độ 2: Tăng Đòn Bẩy & Chống Xoay",
+    timeline: "Tuần 6 - 12 (Sau khi hết đau cấp)",
+    badge: "Tăng tải có kiểm soát",
+    color: "blue",
+    summary: "Duỗi thẳng chân kéo dài cánh tay đòn, thách thức cơ liên sườn và cơ vuông thắt lưng, tập phản xạ chống xoay khi chuyển động.",
+    criteriaToAdvance: "Giữ Full Side Plank duỗi thẳng chân > 45 giây mỗi bên không sụp hông; giữ Bird-Dog vẽ hình vuông không chao đảo lưng."
+  },
+  level3: {
+    id: "level3",
+    levelNumber: 3,
+    name: "Cấp độ 3: Sức Mạnh Chức Năng Đời Thực",
+    timeline: "Sau 12 tuần (Cột sống bền vững)",
+    badge: "Phòng ngừa tái phát vĩnh viễn",
+    color: "amber",
+    summary: "Chuyển hóa sức mạnh nẹp cột sống vào các hoạt động thực tế: xách đồ nặng một bên (chống vẹo cột sống), ngồi xổm an toàn.",
+    criteriaToAdvance: "Cân nặng đạt ngưỡng 61 - 63 kg, hoàn toàn không còn đau lưng hay tê bì chân khi đi bộ và bưng bê đồ vật."
+  }
+};
+
 export const EXERCISES = [
+  // ==========================================
+  // LEVEL 1: NỀN TẢNG (5 BÀI CỐT LÕI)
+  // ==========================================
   {
     id: "mcgill-curlup",
+    levelId: "level1",
     name: "McGill Curl-up",
     vietnameseName: "Gập bụng bảo vệ đĩa đệm",
     level: "Cấp độ 1 - Bắt buộc",
@@ -117,8 +154,9 @@ export const EXERCISES = [
     }
   },
   {
-    id: "side-plank",
-    name: "Modified Side Plank",
+    id: "side-plank-knees",
+    levelId: "level1",
+    name: "Kneeling Side Plank",
     vietnameseName: "Plank nghiêng biến thể quỳ gối",
     level: "Cấp độ 1 - Bắt buộc",
     prescription: "Kim tự tháp McGill: 5 nhịp -> 3 nhịp -> 1 nhịp mỗi bên (Mỗi nhịp giữ 8s, nghỉ 3s).",
@@ -153,8 +191,9 @@ export const EXERCISES = [
     }
   },
   {
-    id: "bird-dog",
-    name: "Bird-Dog",
+    id: "bird-dog-standard",
+    levelId: "level1",
+    name: "Standard Bird-Dog",
     vietnameseName: "Chim - Chó thăng bằng chống xoay",
     level: "Cấp độ 1 - Bắt buộc",
     prescription: "Kim tự tháp McGill: 5 nhịp -> 3 nhịp -> 1 nhịp mỗi bên (Giữ 8s, nghỉ 3s).",
@@ -189,10 +228,11 @@ export const EXERCISES = [
   },
   {
     id: "chest-supported-row",
-    name: "Chest-Supported Dumbbell Row",
+    levelId: "level1",
+    name: "Chest-Supported Dumbbell Row (Light)",
     vietnameseName: "Kéo tạ đơn tỳ ngực trên ghế nghiêng",
-    level: "Cấp độ 2 - Tăng sức mạnh lưng trên",
-    prescription: "3 hiệp x 10-12 cái. Mức tạ: 2 - 4 kg mỗi bên (Dừng lại khi còn làm được 2 cái - Quy tắc RIR=2). Nghỉ 60-90s giữa hiệp.",
+    level: "Cấp độ 1 - Nền tảng lưng trên",
+    prescription: "3 hiệp x 10-12 cái. Mức tạ: 2 - 4 kg mỗi bên (Quy tắc RIR=2). Nghỉ 60-90s giữa hiệp.",
     timerType: "standard",
     image: "/media/chest_supported_row.webp",
     videoId: "ro2vfHfD0DQ",
@@ -225,8 +265,9 @@ export const EXERCISES = [
   },
   {
     id: "glute-bridge",
-    name: "Glute Bridge",
-    vietnameseName: "Cầu mông - Đánh thức cơ mông",
+    levelId: "level1",
+    name: "Double-Leg Glute Bridge",
+    vietnameseName: "Cầu mông 2 chân - Đánh thức cơ mông",
     level: "Cấp độ 1 - Bắt buộc",
     prescription: "3 hiệp x 10 nhịp (Giữ siết 2-3s ở đỉnh mỗi nhịp). Nghỉ 60s giữa hiệp.",
     timerType: "standard",
@@ -256,6 +297,262 @@ export const EXERCISES = [
         "Đau nhói, mỏi thắt lưng (99% do đẩy hông quá cao làm cong uốn cột sống).",
         "Chỉ thấy mỏi mặt trước đùi (do đặt chân quá sát mông).",
         "Bị chuột rút bắp chân (do nhấc ngón chân quá đà hoặc đặt chân quá xa)."
+      ]
+    }
+  },
+
+  // ==========================================
+  // LEVEL 2: TĂNG ĐÒN BẨY & CHỐNG XOAY ĐỘNG (4 BÀI)
+  // ==========================================
+  {
+    id: "full-side-plank",
+    levelId: "level2",
+    name: "Full Side Plank (Staggered)",
+    vietnameseName: "Plank nghiêng duỗi thẳng chân (Chân so le)",
+    level: "Cấp độ 2 - Tăng đòn bẩy",
+    prescription: "Kim tự tháp McGill: 5 nhịp -> 3 nhịp -> 1 nhịp mỗi bên (Giữ 8-10s mỗi nhịp, nghỉ 3s).",
+    timerType: "pyramid",
+    image: "/media/full_side_plank.webp",
+    videoId: "dK29cM2uY6s",
+    videoTitle: "McGill Full Side Bridge: Tăng đòn bẩy khi đĩa đệm đã phục hồi",
+    description: "Kéo dài cánh tay đòn từ đầu gối xuống tận gót chân, tăng gấp đôi tải trọng lên cơ vuông thắt lưng và cơ mông nhỡ mà vẫn giữ cột sống thẳng tắp.",
+    setup: [
+      "Nằm nghiêng, duỗi thẳng cả hai chân.",
+      "Đặt chân trên ra phía trước chân dưới (tư thế so le Staggered Stance) để tăng diện tích đế tựa và bảo vệ xương chậu.",
+      "Chống cùi chỏ vuông góc ngay dưới vai, bàn tay úp trên sàn."
+    ],
+    execution: [
+      "Gồng cứng thành bụng 360 độ.",
+      "Nâng hông lên khỏi sàn sao cho từ gót chân, hông đến vai tạo thành một đường thẳng tắp.",
+      "Giữ đầu thẳng với cột sống, không ngửa đầu hay gục cổ.",
+      "Chủ động khóa cứng xương chậu, không để hông bị xoay đổ về trước hay ngửa ra sau."
+    ],
+    breathing: "Giữ 8-10 giây mỗi nhịp, duy trì nhịp thở ngực nông, hạ hông xuống nghỉ 3 giây.",
+    sensoryMap: {
+      correct: [
+        "Cơ vuông thắt lưng và cơ liên sườn phía dưới gồng xiết rất mạnh.",
+        "Cơ mông nhỡ chân trên và chân dưới cùng kích hoạt.",
+        "Khớp vai ổn định, cột sống không bị võng xuống sàn."
+      ],
+      wrong: [
+        "Hông bị xệ xuống gần sàn làm cột sống bị bẻ cong sang một bên.",
+        "Xoay vặn thân trên úp sấp xuống mặt đất.",
+        "Đau nhói thắt lưng (dấu hiệu cơ bên sườn chưa đủ khỏe -> Hãy quay lại Cấp độ 1 quỳ gối)."
+      ]
+    }
+  },
+  {
+    id: "bird-dog-square",
+    levelId: "level2",
+    name: "Bird-Dog Square Pattern",
+    vietnameseName: "Bird-Dog vẽ hình vuông trên không",
+    level: "Cấp độ 2 - Chống xoay động",
+    prescription: "3 hiệp x 4-6 chu kỳ vẽ hình vuông mỗi bên. Nghỉ 45s giữa hiệp.",
+    timerType: "standard",
+    image: "/media/bird_dog.webp",
+    videoId: "4UiT1sPqHqE",
+    videoTitle: "Dynamic Bird-Dog Squares: Thử thách cơ chống xoay sâu",
+    description: "Khi tay và chân di chuyển vẽ hình vuông nhỏ trên không trung, quán tính dao động sẽ thử thách hệ thần kinh và cơ nhiều chân (Multifidus) phải liên tục phản xạ giữ phẳng thắt lưng.",
+    setup: [
+      "Vào tư thế bò 4 điểm vững chắc.",
+      "Gồng chặt thành bụng, vươn tay trái ra trước và đạp chân phải ra sau ngang tầm thân người."
+    ],
+    execution: [
+      "Giữ nguyên thân người bất động như gắn đinh xuống sàn.",
+      "Dùng nắm tay trái và gót chân phải cùng vẽ một hình vuông nhỏ (kích thước khoảng 15x15 cm) trên không trung.",
+      "Vẽ chậm rãi có kiểm soát: lên -> sang phải -> xuống -> sang trái.",
+      "Đổi chiều vẽ và lặp lại 4-6 lần trước khi đổi bên."
+    ],
+    breathing: "Hít thở đều đặn theo từng cạnh hình vuông, không nín thở.",
+    sensoryMap: {
+      correct: [
+        "Cơ bụng sâu và cơ dựng sống gồng liên tục để dập tắt dao động lắc lư.",
+        "Thắt lưng vẫn phẳng lì, không lệch một milimet.",
+        "Cơ mông bóp chặt giữ chân thẳng."
+      ],
+      wrong: [
+        "Lưng uốn lượn chao đảo theo chuyển động của tay chân.",
+        "Hông lắc lư sang hai bên.",
+        "Vẽ quá nhanh làm mất kiểm soát cơ sinh học."
+      ]
+    }
+  },
+  {
+    id: "single-leg-bridge",
+    levelId: "level2",
+    name: "Single-Leg Glute Bridge",
+    vietnameseName: "Cầu mông 1 chân (Đơn phương kích hoạt)",
+    level: "Cấp độ 2 - Sức mạnh mông",
+    prescription: "3 hiệp x 8-10 cái mỗi bên (Dừng lại khi còn làm được 2 cái - RIR=2). Nghỉ 60s.",
+    timerType: "standard",
+    image: "/media/single_leg_bridge.webp",
+    videoId: "_9k3nS5pX7Q",
+    videoTitle: "Single Leg Glute Bridge: Khóa xương chậu và chống lệch hông",
+    description: "Loại bỏ hoàn toàn sự bù trừ giữa hai chân, buộc cơ mông lớn và cơ mông nhỡ từng bên phải chịu tải 100%, bảo vệ xương chậu không bị xoắn vẹo khi bước đi.",
+    setup: [
+      "Nằm ngửa, một chân co gối đạp phẳng trên sàn, chân kia duỗi thẳng nâng chéo lên 45 độ hoặc co gối ôm nhẹ trước ngực.",
+      "Gồng chặt bụng (Abdominal Bracing) để khóa chặt cột sống thắt lưng."
+    ],
+    execution: [
+      "Dồn toàn bộ lực nhấn mạnh gót chân trụ xuống sàn.",
+      "Siết bóp cơ mông chân trụ đẩy hông lên cho đến khi tạo thành một đường thẳng từ vai đến đầu gối chân trụ.",
+      "Giữ xương chậu thăng bằng nằm ngang — tuyệt đối KHÔNG để bên hông chân giơ bị rơi xệ xuống.",
+      "Giữ 1.5 giây ở đỉnh rồi hạ xuống từ từ chạm thảm."
+    ],
+    breathing: "Đẩy lên thở ra -> Giữ siết 1.5s -> Hạ xuống hít vào đều đặn.",
+    sensoryMap: {
+      correct: [
+        "Cơ mông của chân trụ căng cứng và nóng bừng.",
+        "Cơ đùi sau tham gia hỗ trợ đẩy.",
+        "Hai gai chậu luôn nằm ngang bằng nhau song song với mặt trần."
+      ],
+      wrong: [
+        "Xương chậu bị nghiêng lệch, một bên hông bị tụt xuống sàn.",
+        "Đau nhói thắt lưng do ưỡn lưng để bù đắp cơ mông yếu (Nếu gặp: quay về bài Cấp độ 1 hai chân)."
+      ]
+    }
+  },
+  {
+    id: "incline-row-medium",
+    levelId: "level2",
+    name: "Incline Row (Medium Load)",
+    vietnameseName: "Kéo tạ tỳ ngực tăng tải (6 - 8 kg)",
+    level: "Cấp độ 2 - Xây dựng cơ lưng xô",
+    prescription: "3 hiệp x 8-10 cái. Mức tạ: 6 - 8 kg mỗi bên. Dừng 2s ở đỉnh. Nghỉ 90s.",
+    timerType: "standard",
+    image: "/media/chest_supported_row.webp",
+    videoId: "ro2vfHfD0DQ",
+    videoTitle: "Incline Row Progressive Load: Tăng độ dày cơ lưng bảo vệ cột sống",
+    description: "Tăng tải trọng tạ đơn khi khớp bả vai đã làm quen, xây dựng 'áo giáp' cơ xô và cơ lưng trên để kéo mở lồng ngực, chống gù lưng IT.",
+    setup: [
+      "Ghế nghiêng 35-45 độ, ngực tỳ vững chãi lên đệm ghế.",
+      "Cầm tạ đơn 6-8 kg mỗi bên, cổ giữ trung tính."
+    ],
+    execution: [
+      "Thở ra, kéo mạnh mẽ hai cùi chỏ ra sau theo hình vòng cung về phía hông.",
+      "Kẹp chặt hai xương bả vai ở điểm cao nhất và DỪNG BẤT ĐỘNG 2 GIÂY.",
+      "Hạ tạ chậm rãi trong 3 giây để kích hoạt xơ cơ chịu tải lệch tâm (Eccentric Loading)."
+    ],
+    breathing: "Kéo thở ra -> Dừng 2s giữ hơi thở -> Hạ chậm 3s hít sâu.",
+    sensoryMap: {
+      correct: [
+        "Mỏi sâu và căng cơ lưng giữa, cơ xô hai bên.",
+        "Thắt lưng hoàn toàn được ghế nâng đỡ, không có áp lực nén dọc trục."
+      ],
+      wrong: [
+        "Lấy đà nhấc ngực khỏi ghế.",
+        "Gồng vai co giật lên gần tai."
+      ]
+    }
+  },
+
+  // ==========================================
+  // LEVEL 3: SỨC MẠNH CHỨC NĂNG ĐỜI THỰC (3 BÀI)
+  // ==========================================
+  {
+    id: "suitcase-carry",
+    levelId: "level3",
+    name: "McGill Suitcase Carry",
+    vietnameseName: "Xách tạ 1 bên đi bộ (Chống nghiêng cột sống)",
+    level: "Cấp độ 3 - Sức mạnh thực tế",
+    prescription: "3 hiệp x 30 giây đi bộ mỗi bên tay. Mức tạ: 8 - 12 kg. Nghỉ 60s giữa các hiệp.",
+    timerType: "standard",
+    image: "/media/suitcase_carry.webp",
+    videoId: "F-h8Fk5g-bY",
+    videoTitle: "Squat University: Bài tập xách tạ 1 bên chống vẹo cột sống số 1 của Dr. McGill",
+    description: "Bài tập nẹp cột sống đỉnh cao nhất theo nghiên cứu của Dr. Stuart McGill. Tạ nặng một bên tạo ra mô-men lực muốn bẻ cong cột sống sang bên; cơ vuông thắt lưng và cơ liên sườn đối diện buộc phải gồng xiết 100% công suất để giữ người thẳng đứng như cây tùng.",
+    setup: [
+      "Đứng thẳng người, tay phải cầm một quả tạ đơn hoặc ấm tạ (Kettlebell) nặng 8-12 kg bên sườn.",
+      "Tay trái có thể nắm hờ hoặc dang nhẹ để giữ thăng bằng.",
+      "Hai mắt nhìn thẳng, vai cân bằng hai bên nằm ngang bằng nhau."
+    ],
+    execution: [
+      "Gồng cứng thành bụng 360 độ (Abdominal Bracing).",
+      "Bước đi chậm rãi từng bước dứt khoát trên đường thẳng.",
+      "TUYỆT ĐỐI KHÔNG để thân người bị nghiêng nghiêng sang bên cầm tạ, và cũng KHÔNG được rướn người nghiêng sang phía đối diện để bù trừ.",
+      "Cột sống luôn thẳng đứng 90 độ so với mặt đất trong suốt 30 giây bước đi."
+    ],
+    breathing: "Hít thở nhịp nhàng bằng lồng ngực trong khi thành bụng vẫn gồng cứng nẹp chặt thắt lưng.",
+    sensoryMap: {
+      correct: [
+        "Vùng sườn eo và cơ vuông thắt lưng bên KHÔNG CẦM TẠ gồng cứng như thanh thép.",
+        "Cơ mông hai bên kích hoạt ổn định xương chậu.",
+        "Hai bờ vai luôn cân bằng ngang nhau."
+      ],
+      wrong: [
+        "Người bị kéo trĩu nghiêng sang bên cầm tạ (chứng tỏ tạ quá nặng -> Giảm mức tạ ngay).",
+        "Bước đi loạng choạng, chân đá lung tung.",
+        "Đau nhói thắt lưng do cột sống bị bẻ cong sang bên."
+      ]
+    }
+  },
+  {
+    id: "farmers-walk",
+    levelId: "level3",
+    name: "Farmer's Walk",
+    vietnameseName: "Xách tạ 2 bên đi bộ nẹp thân",
+    level: "Cấp độ 3 - Sức bền toàn thân",
+    prescription: "3 hiệp x 45 giây đi bộ thẳng lưng. Mức tạ: 8 - 14 kg mỗi bên tay. Nghỉ 60-90s.",
+    timerType: "standard",
+    image: "/media/suitcase_carry.webp",
+    videoId: "dK29cM2uY6s",
+    videoTitle: "Farmer's Walk: Nẹp cứng cột sống khi mang vác vật nặng",
+    description: "Mô phỏng động tác xách hai túi đồ nặng sau khi đi siêu thị về nhà. Rèn luyện sức chịu đựng của đai cơ lõi và xương bả vai dưới tải trọng đứng thẳng.",
+    setup: [
+      "Cầm hai quả tạ đều hai bên tay, đứng thẳng tắp.",
+      "Khóa nhẹ hai xương bả vai ra sau và hạ xuống dưới (Scapular Retraction)."
+    ],
+    execution: [
+      "Gồng cứng bụng, mắt nhìn thẳng về phía trước.",
+      "Bước từng bước ngắn, chắc nịch, tiếp đất êm ái.",
+      "Giữ cột sống đứng thẳng hoàn toàn, không đung đưa tạ va vào đùi."
+    ],
+    breathing: "Thở đều theo từng nhịp bước chân, duy trì độ cứng thành bụng.",
+    sensoryMap: {
+      correct: [
+        "Cơ bụng, cơ cầu vai và cẳng tay gồng chắc chắn.",
+        "Lưng thẳng tắp, không rung lắc."
+      ],
+      wrong: [
+        "Lưng gù tròn đổ về phía trước.",
+        "Bước quá dài làm dằn xóc lên đĩa đệm."
+      ]
+    }
+  },
+  {
+    id: "goblet-box-squat",
+    levelId: "level3",
+    name: "Goblet Box Squat",
+    vietnameseName: "Ngồi xổm chạm ghế tỳ ngực giữ lưng thẳng",
+    level: "Cấp độ 3 - Vua chuyển động hạ thân",
+    prescription: "3 hiệp x 8-10 cái. Mức tạ: 4 - 8 kg cầm trước ngực. Nghỉ 90s.",
+    timerType: "standard",
+    image: "/media/goblet_box_squat.webp",
+    videoId: "7Vb_l8q8Dlc",
+    videoTitle: "Goblet Box Squat: Cách ngồi xổm an toàn 100% cho người thoát vị đĩa đệm",
+    description: "Quả tạ tỳ trước ngực tạo ra trọng tâm đối trọng tự nhiên giúp thân người luôn dựng đứng, triệt tiêu hoàn toàn xu hướng gập cong thắt lưng khi ngồi xuống ghế.",
+    setup: [
+      "Đặt một chiếc ghế chắc chắn phía sau (chiều cao ngang đầu gối hoặc bắp chân trên).",
+      "Hai chân mở rộng hơn vai một chút, mũi chân mở chếch 15-20 độ.",
+      "Hai tay ôm chặt một quả tạ đơn hoặc ấm tạ sát trước xương ức."
+    ],
+    execution: [
+      "Hít một hơi sâu và gồng cứng bụng (Abdominal Bracing).",
+      "Đẩy hông ra sau (Hip Hinge) và hạ người xuống cho đến khi mông chạm nhẹ vào mép ghế (không thả người ngồi phịch xuống ghế).",
+      "Giữ nguyên lưng thẳng tắp trong 1 giây.",
+      "Nhấn mạnh hai gót chân, bóp chặt mông và đứng thẳng người lên dứt khoát."
+    ],
+    breathing: "Hạ xuống hít vào gồng bụng -> Chạm ghế 1s -> Đứng lên thở ra mạnh mẽ.",
+    sensoryMap: {
+      correct: [
+        "Cơ mông và cơ đùi trước làm việc cật lực.",
+        "Cột sống luôn thẳng đứng, góc nghiêng thân người không thay đổi.",
+        "Thắt lưng hoàn toàn không đau nhức."
+      ],
+      wrong: [
+        "Cong lưng gù lưng khi hạ xuống thấp.",
+        "Đầu gối chụm vào nhau hướng vào trong (Knock-knee).",
+        "Ngồi bẹp xuống ghế làm mất sức căng cơ bụng."
       ]
     }
   }
@@ -407,11 +704,61 @@ export const NUTRITION_WEIGHT = {
     proteinMin: 115,
     proteinMax: 125,
     waterLiters: 2.75, // 2.5 - 3.0 L
-    waterMl: 2750
+    waterMl: 2750,
+    stepsTarget: 8000,
+    walkingCaloriesBurned: 320
+  },
+  walkingProtocol: {
+    title: "Vua Cardio Cho Thoát Vị Đĩa Đệm: Đi Bộ Nhanh (Fast Walking)",
+    subtitle: "Chìa khóa đốt 300+ kcal/ngày và thẩm thấu nuôi dưỡng đĩa đệm L4-L5",
+    image: "/media/fast_walking.webp",
+    videoId: "vB33N2jGvEw",
+    videoTitle: "Kỹ thuật đi bộ bảo vệ đĩa đệm và giải tỏa áp lực thần kinh tọa",
+    whyNotRunning: "Đĩa đệm L4-L5 đang bị rách bao xơ. Chạy bộ hay nhảy dây tạo ra phản lực dằn xóc mạnh gấp 3-4 lần trọng lượng cơ thể (250-300 kg lực va đập mỗi bước chân) đè nát đĩa đệm. Đi bộ nhanh là bài tập cardio DUY NHẤT tạo áp suất âm vi thể để nhân nhầy hút nước mà không chịu va đập.",
+    imbibitionMechanism: "Hiện tượng thẩm thấu thủy tĩnh (Imbibition): Đĩa đệm người trưởng thành KHÔNG có mạch máu nuôi trực tiếp. Chuyển động bước đi nhịp nhàng đều đặn tạo ra chu kỳ nén-nhả vi mô, hoạt động như một chiếc máy bơm hút dưỡng chất và nước từ đốt sống lân cận vào nuôi dưỡng bao xơ.",
+    dailySchedule: [
+      {
+        session: "Cữ 1 (Buổi Sáng)",
+        duration: "15 phút (Sau ăn sáng 45p)",
+        steps: "~1,500 - 2,000 bước",
+        desc: "Kích hoạt tuần hoàn máu, làm ấm cơ thể sau giấc ngủ đêm."
+      },
+      {
+        session: "Cữ 2 (Sau Bữa Trưa)",
+        duration: "20 phút (12:30 - 12:50)",
+        steps: "~2,000 - 2,500 bước",
+        desc: "Hạ đường huyết sau ăn, giải phóng áp lực tích tụ do 4 tiếng ngồi code buổi sáng."
+      },
+      {
+        session: "Cữ 3 (Chiều / Tối)",
+        duration: "30 phút (17:30 hoặc sau bữa tối)",
+        steps: "~3,500 - 4,500 bước",
+        desc: "Đốt cháy mỡ thừa chính trong ngày, thư giãn hệ thần kinh sau giờ làm việc căng thẳng."
+      }
+    ],
+    fourRules: [
+      {
+        rule: "Mắt nhìn thẳng về phía chân trời",
+        desc: "Tuyệt đối không vừa đi bộ vừa cúi đầu nhìn điện thoại (đầu cúi 45° tạo tải trọng 22kg đè lên cột sống cổ và thắt lưng)."
+      },
+      {
+        rule: "Đánh tay nhịp nhàng tự nhiên",
+        desc: "Đánh tay đối xứng giúp xoay nhẹ lồng ngực trên mà giữ yên thắt lưng, tạo lực đẩy cơ học phân tán chấn động."
+      },
+      {
+        rule: "Tiếp đất êm ái bằng cuộn bàn chân",
+        desc: "Tiếp đất bằng gót chân nhẹ nhàng rồi cuộn mượt mà sang mũi chân, không giậm mạnh gót chân xuống mặt đường."
+      },
+      {
+        rule: "Sải bước vừa phải, tốc độ hơi nhanh",
+        desc: "Không bước sải quá dài (over-striding). Đi nhanh hơn bình thường một chút để tim đập nhanh nhẹ và hơi thở sâu."
+      }
+    ]
   },
   tips: [
     "Uống 1 cốc nước ấm (250ml) ngay sau khi ngủ dậy để bù nước cho bao xơ đĩa đệm.",
     "Ưu tiên đạm nạc: ức gà, trứng, cá hồi, đậu phụ để nuôi dưỡng cơ bắp mà không tích mỡ thừa.",
-    "Hạn chế đồ ăn nhiều muối và đường tinh luyện vì gây phù nề viêm nhiễm quanh rễ thần kinh tọa."
+    "Hạn chế đồ ăn nhiều muối và đường tinh luyện vì gây phù nề viêm nhiễm quanh rễ thần kinh tọa.",
+    "Chia nhỏ 8,000 bước thành 3 cữ trong ngày thay vì dồn đi 1 lần quá dài gây mỏi cơ."
   ]
 };
