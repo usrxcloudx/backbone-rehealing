@@ -71,7 +71,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-24 md:pb-10">
         {activeTab === 'module1' && (
           <Module1Spine101 
             onOpenVideo={handleOpenVideo} 
@@ -111,7 +111,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="glass-panel border-t border-slate-800/80 py-6 text-center text-xs text-slate-400">
+      <footer className="glass-panel border-t border-slate-800/80 py-6 mb-16 md:mb-0 text-center text-xs text-slate-400">
         <div className="max-w-7xl mx-auto px-4 space-y-2">
           <div className="flex items-center justify-center gap-2 font-bold text-slate-300">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
