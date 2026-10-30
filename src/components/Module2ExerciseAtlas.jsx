@@ -16,6 +16,7 @@ import {
   Layers,
   Sparkles
 } from 'lucide-react';
+import VoiceButton from './VoiceButton';
 
 export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExercise }) {
   const [activeLevelId, setActiveLevelId] = useState('level1');
@@ -36,7 +37,7 @@ export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExerc
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">
             Module 2: The Movement Atlas & 3-Level Progression
@@ -47,6 +48,15 @@ export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExerc
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
             Nguyên tắc y học phục hồi: Bắt đầu từ đòn bẩy ngắn nhất ở <strong>Cấp độ 1</strong> để dập tắt đau, sau đó tiến dần lên <strong>Cấp độ 2 & 3</strong> để xây dựng chiếc đai nẹp cơ bắp bất khả xâm phạm.
           </p>
+        </div>
+
+        <div className="flex-shrink-0">
+          <VoiceButton
+            id="mod2_overview"
+            title="Module 2: Thư Viện Bài Tập 3 Cấp Độ"
+            audioSrc="/audio/narrations/mod2_overview.mp3"
+            variant="banner"
+          />
         </div>
       </div>
 
@@ -170,13 +180,20 @@ export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExerc
           </div>
 
           {/* Quick Action Buttons */}
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="flex flex-wrap items-center gap-2.5 flex-shrink-0">
+            <VoiceButton
+              id={`exercise_${selectedExercise.id}`}
+              title={selectedExercise.vietnameseName}
+              text={`${selectedExercise.vietnameseName}. Tên tiếng Anh là ${selectedExercise.name}. ${selectedExercise.description}. Mục đích cơ sinh học: ${selectedExercise.biomechanicalPurpose}. Cảm nhận đúng: ${selectedExercise.sensoryFeedback.correctZone}. Cấm kỵ: ${selectedExercise.sensoryFeedback.forbiddenZone}. Hướng dẫn thực hiện: ${selectedExercise.instructions.join('. ')}. Lỗi sai cần tránh: ${selectedExercise.commonMistakes.join('. ')}.`}
+              variant="card"
+            />
+
             <button
               onClick={() => onOpenVideo(selectedExercise.videoId, selectedExercise.videoTitle, selectedExercise.vietnameseName)}
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs sm:text-sm font-bold border border-slate-700 transition-all shadow-md active:scale-95"
             >
               <Play className="w-4 h-4 fill-emerald-400 text-emerald-400" />
-              <span>Xem Video Kỹ Thuật</span>
+              <span>Xem Video</span>
             </button>
 
             <button
@@ -184,7 +201,7 @@ export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExerc
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-bold transition-all shadow-lg shadow-emerald-600/30 active:scale-95"
             >
               <Clock className="w-4 h-4" />
-              <span>Bật Bộ Đếm Bài Này</span>
+              <span>Bật Bộ Đếm</span>
             </button>
           </div>
         </div>

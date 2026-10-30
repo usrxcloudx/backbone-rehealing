@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AlertOctagon, HeartHandshake, ShieldAlert, X, Play, Pause, RotateCcw, ThermometerSnowflake, CheckCircle2 } from 'lucide-react';
 import { playSoftBeep, playSuccessChime } from '../utils/audio';
+import VoiceButton from './VoiceButton';
 
 export default function EmergencyModal({ isOpen, onClose, triggerReason }) {
   const [secondsLeft, setSecondsLeft] = useState(300); // 5 minutes (300 seconds)
@@ -60,9 +61,9 @@ export default function EmergencyModal({ isOpen, onClose, triggerReason }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Urgent Header Banner */}
-        <div className="p-4 sm:p-6 bg-gradient-to-r from-red-600 to-rose-700 text-white flex items-center justify-between">
+        <div className="p-4 sm:p-6 bg-gradient-to-r from-red-600 to-rose-700 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 sm:p-3 rounded-2xl bg-white/20 backdrop-blur-sm animate-pulse">
+            <div className="p-2 sm:p-3 rounded-2xl bg-white/20 backdrop-blur-sm animate-pulse flex-shrink-0">
               <AlertOctagon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
             </div>
             <div>
@@ -78,13 +79,24 @@ export default function EmergencyModal({ isOpen, onClose, triggerReason }) {
               </p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 text-white/80 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
-            title="Đóng sau khi đã dịu đau"
-          >
-            <X className="w-6 h-6" />
-          </button>
+
+          <div className="flex items-center gap-2 self-end sm:self-center flex-shrink-0">
+            <VoiceButton
+              id="sos_decompression_voice"
+              title="Hướng Dẫn Cấp Cứu Nằm Sấp Giảm Áp"
+              audioSrc="/audio/narrations/sos_overview.mp3"
+              variant="card"
+              className="bg-black/30 text-white border-white/30 hover:bg-black/50"
+            />
+
+            <button
+              onClick={onClose}
+              className="p-2 text-white/80 hover:text-white rounded-xl hover:bg-white/10 transition-colors"
+              title="Đóng sau khi đã dịu đau"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
         </div>
 
         {/* Content Body */}

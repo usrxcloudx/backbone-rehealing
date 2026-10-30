@@ -14,6 +14,7 @@ import {
   HelpCircle
 } from 'lucide-react';
 import { playSoftBeep, playSuccessChime, playEmergencyAlarm } from '../utils/audio';
+import VoiceButton from './VoiceButton';
 
 export default function Module3ActiveSafety({ 
   onTriggerEmergency, 
@@ -70,7 +71,7 @@ export default function Module3ActiveSafety({
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">
             Module 3: Active Safety Engine
@@ -82,21 +83,39 @@ export default function Module3ActiveSafety({
             Hàng rào bảo vệ y khoa 3 lớp: Cơ chế Đèn Giao Thông Cảm Giác, Khóa Cột Sống Buổi Sáng và Quy Tắc Vàng RIR=2.
           </p>
         </div>
+
+        <div className="flex-shrink-0">
+          <VoiceButton
+            id="mod3_overview"
+            title="Module 3: Giám Sát An Toàn Y Khoa"
+            audioSrc="/audio/narrations/mod3_overview.mp3"
+            variant="banner"
+          />
+        </div>
       </div>
 
       {/* LAYER 1: CƠ CHẾ ĐÈN GIAO THÔNG CẢM GIÁC (CORE REQUIREMENT) */}
       <div className="rounded-3xl glass-panel border border-slate-800 p-6 sm:p-8 space-y-6">
-        <div>
-          <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-            <ShieldAlert className="w-4 h-4" />
-            Lớp Bảo Vệ 1: Real-Time Pain Check
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+              <ShieldAlert className="w-4 h-4" />
+              Lớp Bảo Vệ 1: Real-Time Pain Check
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
+              Cơ Chế Đèn Giao Thông Cảm Giác
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 mt-1">
+              Nhấn nhanh nút cảm giác bạn đang có ngay sau mỗi hiệp tập để ứng dụng điều chỉnh:
+            </p>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
-            Cơ Chế Đèn Giao Thông Cảm Giác
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
-            Nhấn nhanh nút cảm giác bạn đang có ngay sau mỗi hiệp tập để ứng dụng điều chỉnh:
-          </p>
+
+          <VoiceButton
+            id="traffic_light_explanation"
+            title="Quy Tắc Đèn Giao Thông Cảm Giác"
+            text="Hệ thống đèn giao thông cảm giác. Đèn Xanh: Cảm giác mỏi cơ đích bụng mông xô, không đau nhói thắt lưng, an toàn tập tiếp. Đèn Vàng: Cảm giác căng tức nhẹ thắt lưng, cần tạm dừng hai phút và giảm 30 phần trăm mức tạ. Đèn Đỏ: Đau buốt đột ngột hoặc tê giật lan xuống chân, phải dừng tập ngay lập tức và nằm sấp giải áp khẩn cấp."
+            variant="card"
+          />
         </div>
 
         {/* 3 Traffic Light Buttons */}
@@ -218,7 +237,14 @@ export default function Module3ActiveSafety({
             </h2>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <VoiceButton
+              id="morning_lockout_voice"
+              title="Khóa Cột Sống Buổi Sáng (< 8:00)"
+              text="Khóa cột sống buổi sáng. Trong 60 phút đầu tiên sau khi thức dậy, các đĩa đệm đã hút đầy nước qua đêm nên căng phồng tối đa. Áp lực bên trong nhân nhầy lúc này cao hơn bình thường đến hai trăm bốn mươi phần trăm. Nếu bạn cúi uốn cong lưng lúc này, nguy cơ rách bao xơ và thoát vị nhân nhầy cao gấp ba lần so với buổi chiều. Tuyệt đối không tập gập lưng hoặc nhặt đồ nặng vào sáng sớm."
+              variant="card"
+            />
+
             <button
               onClick={onToggleMorningSim}
               className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
@@ -258,14 +284,23 @@ export default function Module3ActiveSafety({
 
       {/* LAYER 3: QUY TẮC RIR = 2 (REPETITIONS IN RESERVE) */}
       <div className="rounded-3xl glass-panel border border-slate-800 p-6 sm:p-8 space-y-5">
-        <div>
-          <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-            <Flame className="w-4 h-4" />
-            Lớp Bảo Vệ 3: Giới Hạn Sức Bền Thần Kinh
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+              <Flame className="w-4 h-4" />
+              Lớp Bảo Vệ 3: Giới Hạn Sức Bền Thần Kinh
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
+              Quy Tắc Sống Còn: RIR = 2 (Repetitions In Reserve)
+            </h2>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
-            Quy Tắc Sống Còn: RIR = 2 (Repetitions In Reserve)
-          </h2>
+
+          <VoiceButton
+            id="rir_rule_voice"
+            title="Quy Tắc RIR 2-3 Ngăn Ngừa Tổn Thương"
+            text="Quy tắc R I R hai đến ba. R I R là số lần dự trữ trước khi cơ bắp kiệt sức hoàn toàn. Trong thể hình người ta tập đến kiệt sức R I R bằng không. Nhưng trong phục hồi thoát vị L bốn L năm, khi cơ thành bụng kiệt sức, toàn bộ tải trọng sẽ lập tức đè nát lên đĩa đệm. Bạn phải luôn dừng hiệp tập khi vẫn còn đủ sức thực hiện chuẩn xác hai đến ba nhịp nữa."
+            variant="card"
+          />
         </div>
 
         <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-850 border border-slate-700/80 space-y-4">

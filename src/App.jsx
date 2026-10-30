@@ -8,6 +8,7 @@ import Module5SmartTimers from './components/Module5SmartTimers';
 import Module6NutritionWeight from './components/Module6NutritionWeight';
 import VideoModal from './components/VideoModal';
 import EmergencyModal from './components/EmergencyModal';
+import AudioNarratorBar from './components/AudioNarratorBar';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('module1');
@@ -134,6 +135,9 @@ export default function App() {
         title={videoModal.title}
         exerciseName={videoModal.exerciseName}
       />
+
+      {/* Global Floating Audio Narrator Player Bar */}
+      <AudioNarratorBar />
 
       {/* Emergency Full-Screen Decompression Modal */}
       <EmergencyModal

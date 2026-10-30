@@ -18,6 +18,7 @@ import {
   AlertTriangle,
   Compass
 } from 'lucide-react';
+import VoiceButton from './VoiceButton';
 
 export default function Module6NutritionWeight({ onOpenVideo }) {
   // LocalStorage keys
@@ -118,7 +119,7 @@ export default function Module6NutritionWeight({ onOpenVideo }) {
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">
             Module 6: Dinh Dưỡng, Giảm Mỡ & Đi Bộ Phục Hồi
@@ -129,6 +130,15 @@ export default function Module6NutritionWeight({ onOpenVideo }) {
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
             Mục tiêu rõ ràng: Cắt giảm <strong>10.8 kg mỡ thừa</strong> bằng công thức kiềng 3 chân: Thâm hụt calo (1,550 kcal) + Đi bộ nhanh kích hoạt thẩm thấu đĩa đệm + 5 bài tập nẹp cơ bụng.
           </p>
+        </div>
+
+        <div className="flex-shrink-0">
+          <VoiceButton
+            id="mod6_overview"
+            title="Module 6: Dinh Dưỡng, Giảm Mỡ & Đi Bộ"
+            audioSrc="/audio/narrations/mod6_overview.mp3"
+            variant="banner"
+          />
         </div>
       </div>
 
@@ -207,13 +217,22 @@ export default function Module6NutritionWeight({ onOpenVideo }) {
             </p>
           </div>
 
-          <button
-            onClick={() => onOpenVideo(walkingProtocol.videoId, walkingProtocol.videoTitle, "Kỹ Thuật Đi Bộ Phục Hồi Cột Sống")}
-            className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-600/30 active:scale-95 flex-shrink-0"
-          >
-            <Play className="w-4 h-4 fill-white" />
-            <span>Xem Video Kỹ Thuật Đi Bộ</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2.5 flex-shrink-0">
+            <VoiceButton
+              id="fast_walking_protocol_voice"
+              title="Giao Thức Đi Bộ Nhanh Thẩm Thấu Đĩa Đệm"
+              text="Giao thức đi bộ nhanh Fast Walking. Vì sao người thoát vị L4 L5 tuyệt đối không chạy bộ hay nhảy dây? Vì mỗi bước chạy tạo phản lực nén giáng dọc cột sống từ hai trăm năm mươi đến ba trăm ki lô gam, gây sang chấn dập nát đĩa đệm. Trong khi đó, đi bộ nhanh kích hoạt hiện tượng thẩm thấu thủy tĩnh, hoạt động như một chiếc máy bơm hút dịch dinh dưỡng và nước thẩm thấu vào nhân nhầy L4 L5 mà không tạo lực chấn động. Hãy duy trì ba cữ đi bộ ngắn mỗi ngày để đạt tám nghìn bước."
+              variant="card"
+            />
+
+            <button
+              onClick={() => onOpenVideo(walkingProtocol.videoId, walkingProtocol.videoTitle, "Kỹ Thuật Đi Bộ Phục Hồi Cột Sống")}
+              className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-600/30 active:scale-95"
+            >
+              <Play className="w-4 h-4 fill-white" />
+              <span>Xem Video Kỹ Thuật</span>
+            </button>
+          </div>
         </div>
 
         {/* Medical Mechanism Breakdown */}

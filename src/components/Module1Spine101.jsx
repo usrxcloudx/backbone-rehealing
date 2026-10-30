@@ -15,6 +15,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import { playSoftBeep, playSuccessChime } from '../utils/audio';
+import VoiceButton from './VoiceButton';
 
 export default function Module1Spine101({ onOpenVideo }) {
   const [activeDonutView, setActiveDonutView] = useState('flexion'); // 'flexion' | 'neutral'
@@ -35,7 +36,7 @@ export default function Module1Spine101({ onOpenVideo }) {
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">
             Module 1: Giáo Dục Cột Sống Y Khoa
@@ -46,6 +47,15 @@ export default function Module1Spine101({ onOpenVideo }) {
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
             Dành cho người mới bắt đầu 100%: Xóa bỏ hoàn toàn thuật ngữ khó hiểu bằng các ẩn dụ vật lý trực quan nhất.
           </p>
+        </div>
+
+        <div className="flex-shrink-0">
+          <VoiceButton
+            id="mod1_overview"
+            title="Module 1: Giáo Dục Cột Sống & Ẩn Dụ Bánh Donut"
+            audioSrc="/audio/narrations/mod1_overview.mp3"
+            variant="banner"
+          />
         </div>
       </div>
 
@@ -62,36 +72,45 @@ export default function Module1Spine101({ onOpenVideo }) {
             </h2>
           </div>
 
-          {/* Interactive Switcher */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-slate-900/90 border border-slate-700/80 self-start md:self-auto">
-            <button
-              onClick={() => {
-                setActiveDonutView('flexion');
-                playSoftBeep(330, 0.1);
-              }}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-                activeDonutView === 'flexion'
-                  ? 'bg-red-500/20 text-red-400 border border-red-500/40 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <XCircle className="w-4 h-4" />
-              <span>Cúi gập lưng (Nguy hiểm)</span>
-            </button>
-            <button
-              onClick={() => {
-                setActiveDonutView('neutral');
-                playSoftBeep(659, 0.1);
-              }}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-                activeDonutView === 'neutral'
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Giữ trung tính (An toàn)</span>
-            </button>
+          <div className="flex flex-wrap items-center gap-2 self-start md:self-auto">
+            <VoiceButton
+              id="donut_explanation"
+              title="Cơ chế Bánh Donut & Áp lực Đĩa đệm"
+              text="Mô hình bánh donut nhân thạch. Đĩa đệm gồm lớp vỏ xơ dai bọc ngoài và nhân nhầy mọng nước bên trong. Khi bạn uốn cong lưng, mép trước hai đốt sống kẹp nghiến lại như hai hàm răng, đẩy nhân nhầy phụt ra mép sau chèn ép rễ dây thần kinh tọa gây đau buốt tê giật. Khi giữ cột sống trung tính, áp lực phân bổ đều ba trăm sáu mươi độ, bảo vệ đĩa đệm tuyệt đối."
+              variant="card"
+            />
+
+            {/* Interactive Switcher */}
+            <div className="inline-flex p-1.5 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+              <button
+                onClick={() => {
+                  setActiveDonutView('flexion');
+                  playSoftBeep(330, 0.1);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+                  activeDonutView === 'flexion'
+                    ? 'bg-red-500/20 text-red-400 border border-red-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <XCircle className="w-4 h-4" />
+                <span>Cúi gập lưng (Nguy hiểm)</span>
+              </button>
+              <button
+                onClick={() => {
+                  setActiveDonutView('neutral');
+                  playSoftBeep(659, 0.1);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+                  activeDonutView === 'neutral'
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Giữ trung tính (An toàn)</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -206,13 +225,22 @@ export default function Module1Spine101({ onOpenVideo }) {
 
                   {/* Body Content */}
                   <div className="p-5 sm:p-6 space-y-4">
-                    <div>
-                      <h3 className="font-bold text-white text-base sm:text-lg">
-                        {skill.title}
-                      </h3>
-                      <p className="text-xs text-emerald-400 font-medium mt-0.5">
-                        {skill.sub}
-                      </p>
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <h3 className="font-bold text-white text-base sm:text-lg">
+                          {skill.title}
+                        </h3>
+                        <p className="text-xs text-emerald-400 font-medium mt-0.5">
+                          {skill.sub}
+                        </p>
+                      </div>
+
+                      <VoiceButton
+                        id={`skill_${skill.id}`}
+                        title={skill.title}
+                        text={`${skill.title}. Ẩn dụ: ${skill.physicalMetaphor}. Các bước thực hiện: ${skill.steps.join('. ')}. Cách tự kiểm tra: Đúng là ${skill.selfCheck.correct}. Sai là ${skill.selfCheck.wrong}.`}
+                        variant="card"
+                      />
                     </div>
 
                     {/* Metaphor Box */}

@@ -15,6 +15,7 @@ import {
   Timer
 } from 'lucide-react';
 import { playSoftBeep, playWorkSignal, playRestSignal, playSuccessChime } from '../utils/audio';
+import VoiceButton from './VoiceButton';
 
 export default function Module4DailyLifeIT({ onOpenVideo }) {
   // Pomodoro State: 45m work (2700s) -> 3m stretch (180s)
@@ -73,7 +74,7 @@ export default function Module4DailyLifeIT({ onOpenVideo }) {
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold uppercase tracking-wider">
             Module 4: Activities of Daily Living (ADL)
@@ -84,6 +85,15 @@ export default function Module4DailyLifeIT({ onOpenVideo }) {
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
             Bạn có thể tập 30 phút rất chuẩn, nhưng nếu ngồi sai và cúi sai trong 15 giờ còn lại, đĩa đệm vẫn sẽ bị tổn thương. Hãy làm chủ các chuyển động công thái học này!
           </p>
+        </div>
+
+        <div className="flex-shrink-0">
+          <VoiceButton
+            id="mod4_overview"
+            title="Module 4: Cẩm Nang Sinh Hoạt Công Thái Học IT"
+            audioSrc="/audio/narrations/mod4_overview.mp3"
+            variant="banner"
+          />
         </div>
       </div>
 
@@ -200,18 +210,26 @@ export default function Module4DailyLifeIT({ onOpenVideo }) {
           {/* Accompanying Stretch Guide */}
           <div className="lg:col-span-7 space-y-4">
             <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-700/80 space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="font-bold text-white text-sm sm:text-base flex items-center gap-2">
                   <Flame className="w-4 h-4 text-amber-400" />
                   Động Tác Trong 3 Phút Nghỉ: Giãn Cơ Gập Hông (Hip Flexor Stretch)
                 </div>
-                <button
-                  onClick={() => onOpenVideo("vIDzsqJiAIo", "Kỹ thuật giãn cơ gập hông Half-Kneeling", "Giãn Cơ Gập Hông")}
-                  className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold"
-                >
-                  <Play className="w-3.5 h-3.5 fill-emerald-400" />
-                  <span>Xem Video</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <VoiceButton
+                    id="hip_flexor_voice"
+                    title="Giãn Cơ Gập Hông Cho Dân IT"
+                    text="Động tác giãn cơ gập hông Half-Kneeling. Ngồi ghế máy tính 8 đến 10 tiếng làm cơ gập hông co rút ngắn lại. Khi đứng lên nó kéo giật xương chậu đổ về trước gây cong võng và chèn ép đĩa đệm L4 L5. Cách tập: Quỳ một gối, siết chặt cơ mông của bên gối quỳ, cuộn xương chậu nhẹ về trước. Giữ 30 giây mỗi bên và uống một cốc nước 200ml."
+                    variant="card"
+                  />
+                  <button
+                    onClick={() => onOpenVideo("vIDzsqJiAIo", "Kỹ thuật giãn cơ gập hông Half-Kneeling", "Giãn Cơ Gập Hông")}
+                    className="text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-emerald-400" />
+                    <span>Xem Video</span>
+                  </button>
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 items-center">
@@ -239,18 +257,26 @@ export default function Module4DailyLifeIT({ onOpenVideo }) {
         {/* LOG ROLL TECHNIQUE */}
         <div className="rounded-3xl glass-panel border border-slate-800 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold">
                 <Bed className="w-3.5 h-3.5" />
                 <span>Rời Giường An Toàn</span>
               </div>
-              <button
-                onClick={() => onOpenVideo("nPm1VuOSICg", "Kỹ thuật Log Roll rời giường an toàn", "Log Roll Technique")}
-                className="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1"
-              >
-                <Play className="w-3.5 h-3.5 fill-emerald-400" />
-                <span>Xem Video</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <VoiceButton
+                  id="log_roll_voice"
+                  title="Kỹ Thuật Log Roll Rời Giường"
+                  text="Kỹ thuật lăn khúc gỗ Log Roll khi rời giường. Tuyệt đối không gập bụng bật dậy thẳng đứng từ tư thế nằm ngửa vì đĩa đệm buổi sáng rất dễ rách. Các bước: Nằm co hai gối. Lăn toàn bộ cơ thể vai lưng và hông cùng một khối sang mép giường. Thả hai cẳng chân thõng xuống sàn. Dùng hai bàn tay chống đẩy nâng thân người ngồi dậy, cột sống thắt lưng luôn giữ thẳng tắp."
+                  variant="card"
+                />
+                <button
+                  onClick={() => onOpenVideo("nPm1VuOSICg", "Kỹ thuật Log Roll rời giường an toàn", "Log Roll Technique")}
+                  className="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1"
+                >
+                  <Play className="w-3.5 h-3.5 fill-emerald-400" />
+                  <span>Xem Video</span>
+                </button>
+              </div>
             </div>
 
             <h3 className="text-lg sm:text-xl font-bold text-white">
@@ -294,18 +320,26 @@ export default function Module4DailyLifeIT({ onOpenVideo }) {
         {/* GOLFER'S LIFT */}
         <div className="rounded-3xl glass-panel border border-slate-800 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 text-xs font-bold">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Nhặt Đồ Rơi Chuẩn</span>
               </div>
-              <button
-                onClick={() => onOpenVideo("pShkMkdcsKQ", "Kỹ thuật Golfer's Lift nhặt đồ an toàn", "Golfer's Lift")}
-                className="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1"
-              >
-                <Play className="w-3.5 h-3.5 fill-emerald-400" />
-                <span>Xem Video</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <VoiceButton
+                  id="golfers_lift_voice"
+                  title="Kỹ Thuật Golfer's Lift"
+                  text="Kỹ thuật Golfer's Lift nhặt đồ không gập thắt lưng. Bước 1: Đứng trên một chân trụ khỏe, đầu gối chùng nhẹ mười đến mười lăm độ. Bước 2: Đá chân kia thẳng ra sau hướng lên trần nhà như chiếc bập bênh đối trọng, giữ cột sống thẳng tắp. Bước 3: Hạ tay nhặt đồ nhẹ rồi hạ chân sau xuống đứng thẳng dậy."
+                  variant="card"
+                />
+                <button
+                  onClick={() => onOpenVideo("pShkMkdcsKQ", "Kỹ thuật Golfer's Lift nhặt đồ an toàn", "Golfer's Lift")}
+                  className="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1"
+                >
+                  <Play className="w-3.5 h-3.5 fill-emerald-400" />
+                  <span>Xem Video</span>
+                </button>
+              </div>
             </div>
 
             <h3 className="text-lg sm:text-xl font-bold text-white">
