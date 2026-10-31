@@ -34,6 +34,14 @@ export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExerc
     }
   };
 
+  if (!selectedExercise) {
+    return (
+      <div className="p-12 text-center text-slate-400 bg-slate-900 rounded-3xl border border-slate-800">
+        Đang tải dữ liệu bài tập phục hồi...
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Header Banner */}
@@ -184,7 +192,7 @@ export default function Module2ExerciseAtlas({ onOpenVideo, onStartTimerForExerc
             <VoiceButton
               id={`exercise_${selectedExercise.id}`}
               title={selectedExercise.vietnameseName}
-              text={`${selectedExercise.vietnameseName}. Tên tiếng Anh là ${selectedExercise.name}. ${selectedExercise.description}. Mục đích cơ sinh học: ${selectedExercise.biomechanicalPurpose}. Cảm nhận đúng: ${selectedExercise.sensoryFeedback.correctZone}. Cấm kỵ: ${selectedExercise.sensoryFeedback.forbiddenZone}. Hướng dẫn thực hiện: ${selectedExercise.instructions.join('. ')}. Lỗi sai cần tránh: ${selectedExercise.commonMistakes.join('. ')}.`}
+              text={`${selectedExercise.vietnameseName}. Tên tiếng Anh là ${selectedExercise.name}. ${selectedExercise.description}. Đơn thuốc tập luyện: ${selectedExercise.prescription || ''}. Hướng dẫn chuẩn bị: ${(selectedExercise.setup || []).join('. ')}. Cách thực hiện: ${(selectedExercise.execution || []).join('. ')}. Cảm nhận đúng: ${(selectedExercise.sensoryMap?.correct || []).join('. ')}. Cảnh báo lỗi sai cần tránh: ${(selectedExercise.sensoryMap?.wrong || []).join('. ')}.`}
               variant="card"
             />
 

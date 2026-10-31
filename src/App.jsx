@@ -9,6 +9,7 @@ import Module6NutritionWeight from './components/Module6NutritionWeight';
 import VideoModal from './components/VideoModal';
 import EmergencyModal from './components/EmergencyModal';
 import AudioNarratorBar from './components/AudioNarratorBar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('module1');
@@ -73,42 +74,44 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-24 md:pb-10">
-        {activeTab === 'module1' && (
-          <Module1Spine101 
-            onOpenVideo={handleOpenVideo} 
-          />
-        )}
+        <ErrorBoundary onReset={() => setActiveTab('module1')}>
+          {activeTab === 'module1' && (
+            <Module1Spine101 
+              onOpenVideo={handleOpenVideo} 
+            />
+          )}
 
-        {activeTab === 'module2' && (
-          <Module2ExerciseAtlas 
-            onOpenVideo={handleOpenVideo}
-            onStartTimerForExercise={handleStartTimerForExercise}
-          />
-        )}
+          {activeTab === 'module2' && (
+            <Module2ExerciseAtlas 
+              onOpenVideo={handleOpenVideo}
+              onStartTimerForExercise={handleStartTimerForExercise}
+            />
+          )}
 
-        {activeTab === 'module3' && (
-          <Module3ActiveSafety 
-            onTriggerEmergency={handleTriggerEmergency}
-            isMorningLocked={isMorningLocked}
-            onToggleMorningSim={() => setSimulatedMorningLock(!simulatedMorningLock)}
-          />
-        )}
+          {activeTab === 'module3' && (
+            <Module3ActiveSafety 
+              onTriggerEmergency={handleTriggerEmergency}
+              isMorningLocked={isMorningLocked}
+              onToggleMorningSim={() => setSimulatedMorningLock(!simulatedMorningLock)}
+            />
+          )}
 
-        {activeTab === 'module4' && (
-          <Module4DailyLifeIT 
-            onOpenVideo={handleOpenVideo}
-          />
-        )}
+          {activeTab === 'module4' && (
+            <Module4DailyLifeIT 
+              onOpenVideo={handleOpenVideo}
+            />
+          )}
 
-        {activeTab === 'module5' && (
-          <Module5SmartTimers 
-            initialExercise={selectedTimerExercise}
-          />
-        )}
+          {activeTab === 'module5' && (
+            <Module5SmartTimers 
+              initialExercise={selectedTimerExercise}
+            />
+          )}
 
-        {activeTab === 'module6' && (
-          <Module6NutritionWeight />
-        )}
+          {activeTab === 'module6' && (
+            <Module6NutritionWeight />
+          )}
+        </ErrorBoundary>
       </main>
 
       {/* Footer */}
